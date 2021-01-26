@@ -1,5 +1,5 @@
 import { decode } from 'jsonwebtoken';
-import { localURL } from './../settings.js';
+import { URL } from './../settings.js';
 
 function handleHttpErrors(res) {
   if (!res.ok) {
@@ -38,7 +38,7 @@ function apiFacade() {
 
   const login = (user, password) => {
     const options = makeOptions("POST", true, { username: user, password: password });
-    return fetch(localURL + "/api/login", options)
+    return fetch(URL + "/api/login", options)
       .then(handleHttpErrors)
       .then(res => {
         setToken(res.token);
@@ -48,7 +48,7 @@ function apiFacade() {
 
   const signup = (user, password) => {
     const options = makeOptions("POST", true, { username: user, password: password });
-    return fetch(localURL + "/api/signup", options)
+    return fetch(URL + "/api/signup", options)
       .then(handleHttpErrors)
       .then(res => {
         setToken(res.token);
@@ -58,11 +58,11 @@ function apiFacade() {
 
   const fetchData = () => {
     const options = makeOptions("GET", true);
-    return fetch(`${localURL}/api/info/${getRole()}`, options).then(handleHttpErrors);
+    return fetch(`${URL}/api/info/${getRole()}`, options).then(handleHttpErrors);
   }
 
   const fetchAllData = () => {
-    return fetch(`${localURL}/api/info/data`).then(handleHttpErrors);
+    return fetch(`${URL}/api/info/data`).then(handleHttpErrors);
   }
 
   const makeOptions = (method, addToken, body) => {

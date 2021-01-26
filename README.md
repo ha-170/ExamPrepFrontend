@@ -12,6 +12,11 @@ kør "npm start"
 
 I settings.js, ændr url'en, så det matcher med hvor projektet er deployet. 
 
+npm run build
+cd build
+cp index.html 200.html
+surge
+
 ---------------------------------------------------------------
 
 # Getting Started with project
